@@ -1,71 +1,92 @@
-<a href="https://chatbot.ai-sdk.dev/demo">
-  <img alt="Chatbot" src="app/(chat)/opengraph-image.png">
-  <h1 align="center">Chatbot</h1>
-</a>
+# Mukesh's AI Portfolio Chatbot
 
 <p align="center">
-    Chatbot (formerly AI Chatbot) is a free, open-source template built with Next.js and the AI SDK that helps you quickly build powerful chatbot applications.
+  <img alt="Mukesh's AI Chatbot" src="public/preview.png" width="800">
 </p>
 
 <p align="center">
-  <a href="https://chatbot.ai-sdk.dev/docs"><strong>Read Docs</strong></a> ·
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#model-providers"><strong>Model Providers</strong></a> ·
-  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
-  <a href="#running-locally"><strong>Running locally</strong></a>
+  A premium, open-source AI Portfolio Assistant built with <strong>Next.js 15+ (App Router)</strong>, the <strong>Vercel AI SDK</strong>, and direct <strong>Google Gemini 2.0 Flash</strong> integration. Customized showcase for <strong>PODUGU MUKESH</strong> (Full-Stack & AI Engineer).
 </p>
-<br/>
 
-## Features
+<p align="center">
+  <a href="https://ai-chatbot-teal-beta.vercel.app"><strong>Live Demo</strong></a> ·
+  <a href="#features"><strong>Key Features</strong></a> ·
+  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
+  <a href="#running-locally"><strong>Running Locally</strong></a> ·
+  <a href="#contact"><strong>Contact</strong></a>
+</p>
 
-- [Next.js](https://nextjs.org) App Router
-  - Advanced routing for seamless navigation and performance
-  - React Server Components (RSCs) and Server Actions for server-side rendering and increased performance
-- [AI SDK](https://ai-sdk.dev/docs/introduction)
-  - Unified API for generating text, structured objects, and tool calls with LLMs
-  - Hooks for building dynamic chat and generative user interfaces
-  - Supports OpenAI, Anthropic, Google, xAI, and other model providers via AI Gateway
-- [shadcn/ui](https://ui.shadcn.com)
-  - Styling with [Tailwind CSS](https://tailwindcss.com)
-  - Component primitives from [Radix UI](https://radix-ui.com) for accessibility and flexibility
-- Data Persistence
-  - [Neon Serverless Postgres](https://vercel.com/marketplace/neon) for saving chat history and user data
-  - [Vercel Blob](https://vercel.com/storage/blob) for efficient file storage
-- [Auth.js](https://authjs.dev)
-  - Simple and secure authentication
+---
 
-## Model Providers
+## 🌟 Live Demo
 
-This template uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to access multiple AI models through a unified interface. Models are configured in `lib/ai/models.ts` with per-model provider routing. Included models: Mistral, Moonshot, DeepSeek, OpenAI, and xAI.
+The application is deployed and live at:
+👉 **[https://ai-chatbot-teal-beta.vercel.app](https://ai-chatbot-teal-beta.vercel.app)**
 
-### AI Gateway Authentication
+*Featuring a customized Glassmorphism portfolio card, direct contact links, suggested questions about Mukesh's background, and direct Gemini responses.*
 
-**For Vercel deployments**: Authentication is handled automatically via OIDC tokens.
+---
 
-**For non-Vercel deployments**: You need to provide an AI Gateway API key by setting the `AI_GATEWAY_API_KEY` environment variable in your `.env.local` file.
+## 🚀 Key Features
 
-With the [AI SDK](https://ai-sdk.dev/docs/introduction), you can also switch to direct LLM providers like [OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), and [many more](https://ai-sdk.dev/providers/ai-sdk-providers) with just a few lines of code.
+* **Direct Gemini 2.0 Flash Integration**: Leverages `@ai-sdk/google` for ultra-fast, direct responses without routing latency.
+* **Glassmorphic Portfolio Dashboard**: A modern, interactive landing card displaying contact information, resume details, and professional badges with micro-animations.
+* **Suggested Actions**: Pre-configured question cards helping visitors learn about Mukesh's technical skills, projects, and contact info.
+* **Neon Serverless Postgres**: Persistent chat history and guest sessions backed by serverless PostgreSQL via Drizzle ORM.
+* **Auth.js (v5)**: Clean and secure authentication handling for both guest and regular users.
+* **BotID Protection**: Invisible bot protection (powered by Vercel) safeguarding high-value route interactions.
 
-## Deploy Your Own
+---
 
-You can deploy your own version of Chatbot to Vercel with one click:
+## 🛠️ Tech Stack
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/templates/next.js/chatbot)
+* **Framework**: [Next.js 15 (App Router)](https://nextjs.org) with React Server Components (RSCs) & Turbopack
+* **AI Engine**: [Vercel AI SDK](https://ai-sdk.dev) & `@ai-sdk/google` (Gemini 2.0 Flash)
+* **Styling**: [Tailwind CSS v4](https://tailwindcss.com) & [Framer Motion](https://framer.com/motion)
+* **Database & ORM**: [Neon Postgres](https://neon.tech) & [Drizzle ORM](https://orm.drizzle.team)
+* **Auth**: [Auth.js (v5)](https://authjs.dev)
 
-## Running locally
+---
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Chatbot. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/projects/environment-variables) for this, but a `.env` file is all that is necessary.
+## 💻 Running Locally
 
-> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various AI and authentication provider accounts.
+To run the application locally on your machine, follow these steps:
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
-3. Download your environment variables: `vercel env pull`
+### 1. Prerequisites
+Make sure you have Node.js 18+ and `pnpm` installed.
 
+### 2. Clone and Install Dependencies
 ```bash
+git clone https://github.com/mukeshpodugu/ai_chatbot.git
+cd ai_chatbot
 pnpm install
-pnpm db:migrate # Setup database or apply latest database changes
+```
+
+### 3. Environment Variables
+Pull the pre-configured project environment variables from Vercel (or copy `.env.example` to `.env.local` and fill them out):
+```bash
+# Link local instance with Vercel project
+npx vercel link
+# Download production variables (including Neon Database & Gemini key)
+npx vercel env pull .env.local --environment production
+```
+
+### 4. Run Migrations & Start Server
+```bash
+# Run database migrations
+pnpm db:migrate
+# Start dev server on http://localhost:3000
 pnpm dev
 ```
 
-Your app template should now be running on [localhost:3000](http://localhost:3000).
+---
+
+## 📞 Contact & Hire
+
+Feel free to connect or reach out regarding freelance, contract, or full-time roles:
+
+* **Name**: Podugu Mukesh
+* **Role**: Full-Stack & AI Engineer
+* **Email**: [mukeshpodugu123@gmail.com](mailto:mukeshpodugu123@gmail.com)
+* **Phone**: [+91 8143999463](tel:8143999463)
+* **GitHub**: [github.com/mukeshpodugu](https://github.com/mukeshpodugu)
