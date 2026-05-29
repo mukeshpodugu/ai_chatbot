@@ -1,8 +1,8 @@
-export const DEFAULT_CHAT_MODEL = "google/gemini-2.5-flash";
+export const DEFAULT_CHAT_MODEL = "google/gemini-2.0-flash";
 
 export const titleModel: ChatModel = {
-  id: "google/gemini-2.5-flash",
-  name: "Gemini 2.5 Flash",
+  id: "google/gemini-2.0-flash",
+  name: "Gemini 2.0 Flash",
   provider: "google",
   description: "Fast model for title generation",
 };
@@ -24,14 +24,14 @@ export type ChatModel = {
 
 export const chatModels: ChatModel[] = [
   {
-    id: "google/gemini-2.5-flash",
-    name: "Gemini 2.5 Flash",
+    id: "google/gemini-2.0-flash",
+    name: "Gemini 2.0 Flash",
     provider: "google",
     description: "Google's fast, multimodal model with tool use",
   },
   {
-    id: "google/gemini-2.5-pro",
-    name: "Gemini 2.5 Pro",
+    id: "google/gemini-1.5-pro",
+    name: "Gemini 1.5 Pro",
     provider: "google",
     description: "Google's high-quality reasoning model",
   },
