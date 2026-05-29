@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Github, Sparkles, Code, Brain } from "lucide-react";
+import { SuggestedActions } from "./suggested-actions";
+import { useActiveChat } from "@/hooks/use-active-chat";
 
 export const Greeting = () => {
+  const { chatId, visibilityType, sendMessage } = useActiveChat();
+
   return (
     <div className="pointer-events-auto flex flex-col items-center max-w-2xl px-6 py-8 mx-auto text-center" key="overview">
       {/* Animated Icon Header */}
@@ -107,6 +111,18 @@ export const Greeting = () => {
           </a>
         </div>
       </motion.div>
+
+      {/* Suggested Actions - aligned nicely below the details card */}
+      <div className="w-full mt-10">
+        <p className="text-xs font-semibold text-muted-foreground/75 uppercase tracking-wider text-left mb-3 pl-1">
+          Suggested Questions
+        </p>
+        <SuggestedActions
+          chatId={chatId}
+          selectedVisibilityType={visibilityType}
+          sendMessage={sendMessage}
+        />
+      </div>
     </div>
   );
 };

@@ -61,21 +61,21 @@ function PureMessages({
 
   return (
     <div className="relative flex-1 bg-background">
-      {messages.length === 0 && !isLoading && (
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-          <Greeting />
-        </div>
-      )}
       <div
-        className={cn(
-          "absolute inset-0 touch-pan-y overflow-y-auto",
-          messages.length > 0 ? "bg-background" : "bg-transparent"
-        )}
+        className="absolute inset-0 touch-pan-y overflow-y-auto"
         ref={messagesContainerRef}
         style={isArtifactVisible ? { scrollbarWidth: "none" } : undefined}
       >
-        <div className="mx-auto flex min-h-full min-w-0 max-w-4xl flex-col gap-5 px-2 py-6 md:gap-7 md:px-4">
-          {messages.map((message, index) => (
+        <div
+          className={cn(
+            "mx-auto flex min-h-full min-w-0 max-w-4xl flex-col gap-5 px-2 py-6 md:gap-7 md:px-4",
+            messages.length === 0 && !isLoading && "justify-center"
+          )}
+        >
+          {messages.length === 0 && !isLoading ? (
+            <Greeting />
+          ) : (
+            messages.map((message, index) => (
             <PreviewMessage
               addToolApprovalResponse={addToolApprovalResponse}
               chatId={chatId}
@@ -97,7 +97,8 @@ function PureMessages({
                   : undefined
               }
             />
-          ))}
+          ))
+          )}
 
           {status === "submitted" && messages.at(-1)?.role !== "assistant" && (
             <ThinkingMessage />
