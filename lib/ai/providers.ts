@@ -1,4 +1,5 @@
 import { customProvider, gateway } from "ai";
+import { google } from "@ai-sdk/google";
 import { isTestEnvironment } from "../constants";
 import { titleModel } from "./models";
 
@@ -14,17 +15,28 @@ export const myProvider = isTestEnvironment
     })()
   : null;
 
-export function getLanguageModel(modelId: string) {
+export function getLanguageModel(modelId: string): any {
   if (isTestEnvironment && myProvider) {
     return myProvider.languageModel(modelId);
+  }
+
+  const [provider, name] = modelId.split("/");
+  if (provider === "google") {
+    return google(name ?? modelId);
   }
 
   return gateway.languageModel(modelId);
 }
 
-export function getTitleModel() {
+export function getTitleModel(): any {
   if (isTestEnvironment && myProvider) {
     return myProvider.languageModel("title-model");
   }
+
+  const [provider, name] = titleModel.id.split("/");
+  if (provider === "google") {
+    return google(name ?? titleModel.id);
+  }
+
   return gateway.languageModel(titleModel.id);
 }
